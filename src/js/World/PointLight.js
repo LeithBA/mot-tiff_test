@@ -8,10 +8,11 @@ export default class PointLight {
     // Set up
     this.container = new THREE.Object3D()
     this.params = {
-      color: 0xaa55aa,
+      color: 0xffffff,
       positionX: 0,
       positionY: 1,
       positionZ: 5,
+      intensity: 1.0
     }
 
     this.createPointLight()
@@ -23,12 +24,16 @@ export default class PointLight {
   createPointLight() {
     this.light = new THREE.SpotLight(this.params.color)
     this.light.castShadow = true
+
+    this.light.shadow.bias = -0.004;
+
     this.light.position.set(
       this.params.positionX,
       this.params.positionY,
       this.params.positionZ
     )
     this.container.add(this.light)
+    this.light.intensity = this.params.intensity
   }
   setDebug() {
     // Color debug

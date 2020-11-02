@@ -1,8 +1,97 @@
+:root
+  --white:  #e0ece4
+  --black:  #242625
+  --red:    #ff4b5c
+  --d-blue: #056674
+  --l-blue: #66bfbf
+
 html, body
   margin 0
   padding 0
-  overflow hidden
+  font-family: 'Titillium Web', sans-serif
+  text-align: right
+  cursor: url(../textures/cursor.png) 12.5 12.5, auto;
+
+body
+  background: var(--white)
+  color: var(--black)
+
+.darkTheme
+  background-color: var(--black)
+  color: var(--white)
+
+.darkThemeToggle
+  position absolute
+  left 1vw
+  top 1vh
+  height 2vw
+  width: 2vw
+  z-index: 1
+
+h1
+  font-size 5vw
+  color var(--red)
+  font-style black
+  margin-right 0px
+
+h2
+  font-size 3vw
+  color var(--red)
+  font-style light 
+  margin-right 0px
+
+
+h3
+  margin 0
+  color var(--white)
+  font-size: 1.5vw
+  white-space: nowrap
+
+button
+  background var(--red)
+  border-radius 5px
+  border-width: 0px
+  width 10vw
+  height 3vw
+  padding 0px
+  padding-left 1vw
+  padding-right 1vw
+  margin 0px
+  margin-left: 1vw
+
+button:hover
+  background var(--d-blue)
+
 canvas
-  width 100%
-  height 100%
-  outline none
+  z-index -1
+  position absolute
+  top 0px
+  left 0px
+
+#contentBox
+  position absolute
+  width 100vw
+  height 100vh
+  overflow scroll
+  scroll-snap-type: y mandatory;
+  //scroll-snap-points-y: repeat(100vh);
+
+.content
+  position relative
+  display:flex;
+  flex-direction: column
+  justify-content:center;
+  height 100vh
+  // padding-top 20vh
+  // padding-bottom 19vh
+  padding-left 33vw
+  padding-right: 3vw
+  font-size 2vh
+  scroll-snap-align: start;
+
+.contentElem
+  margin 1vh
+  padding 0
+
+.buttons
+  margin-top 5vh

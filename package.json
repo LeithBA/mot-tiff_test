@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Three boilerplate",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "event-emitter": "^0.3.5",
+    "gl-matrix": "^3.3.0",
+    "surge": "^0.21.6"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",

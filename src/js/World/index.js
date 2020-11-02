@@ -3,12 +3,14 @@ import * as THREE from 'three'
 import AmbientLight from './AmbientLight.js'
 import PointLight from './PointLight.js'
 import Cube from './Cube.js'
+import Painting from './Painting.js'
 
 export default class World {
   constructor(_options) {
     // Set options
     this.time = _options.time
     this.debug = _options.debug
+    this.sizes = _options.sizes
 
     // Set up
     this.container = new THREE.Object3D()
@@ -20,7 +22,8 @@ export default class World {
 
     this.setAmbientLight()
     this.setPointLight()
-    this.setCube()
+    //this.setCube()
+    this.setPainting()
   }
   setAmbientLight() {
     this.light = new AmbientLight({
@@ -40,5 +43,13 @@ export default class World {
       debug: this.debugFolder,
     })
     this.container.add(this.cube.container)
+  }
+  setPainting() {
+    this.painting = new Painting({
+      time: this.time,
+      debug: this.debugFolder,
+      sizes: this.sizes,
+    })
+    this.container.add(this.painting.container)
   }
 }

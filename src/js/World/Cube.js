@@ -30,12 +30,11 @@ export default class Cube {
       })
     )
     this.container.add(this.cube)
+    this.cube.position.z = -5
+    this.cube.scale.set(5, 5, 5)
   }
   setMovement() {
     this.time.on('tick', () => {
-      this.cube.rotation.x += 0.03
-      this.cube.rotation.y += 0.01
-      this.cube.rotation.z += 0.02
     })
   }
   setDebug() {

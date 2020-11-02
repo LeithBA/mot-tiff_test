@@ -9,9 +9,10 @@ import World from './World/index.js'
 
 export default class App {
   constructor(_options) {
+    //window.scrollTo(0, 0);
+
     // Set options
     this.canvas = _options.canvas
-
     // Set up
     this.time = new Time()
     this.sizes = new Sizes()
@@ -20,6 +21,8 @@ export default class App {
     this.setRenderer()
     this.setCamera()
     this.setWorld()
+    this.setTheme()
+
   }
   setRenderer() {
     // Set scene
@@ -28,10 +31,10 @@ export default class App {
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
       alpha: true,
-      antialiasing: true,
+      antialias: true
     })
     // Set background color
-    this.renderer.setClearColor(0x212121, 1)
+    this.renderer.setClearColor(0x000000, 0)
     // Set renderer pixel ratio & sizes
     this.renderer.setPixelRatio(window.devicePixelRatio)
     this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
@@ -42,6 +45,9 @@ export default class App {
         this.sizes.viewport.height
       )
     })
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.BasicShadowMap;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     // Set RequestAnimationFrame with 60ips
     this.time.on('tick', () => {
       this.renderer.render(this.scene, this.camera.camera)
@@ -62,6 +68,7 @@ export default class App {
     this.world = new World({
       time: this.time,
       debug: this.debug,
+      sizes: this.sizes,
     })
     // Add world to scene
     this.scene.add(this.world.container)
@@ -70,5 +77,23 @@ export default class App {
     if (window.location.hash === '#debug') {
       this.debug = new dat.GUI({ width: 420 })
     }
+  }
+
+  setTheme() {
+    let darkToggle = document.getElementsByClassName("darkThemeToggle");
+    darkToggle[0].addEventListener("click", function () {
+      let darkOn = document.getElementById("darkThemeOn");
+      let darkOff = document.getElementById("darkThemeOff");
+      document.body.classList.add("darkTheme");
+      darkOff.style.visibility = "visible";
+      darkOn.style.visibility = "hidden";
+    });
+    darkToggle[1].addEventListener("click", function () {
+      let darkOn = document.getElementById("darkThemeOn");
+      let darkOff = document.getElementById("darkThemeOff");
+      document.body.classList.remove("darkTheme");
+      darkOff.style.visibility = "hidden";
+      darkOn.style.visibility = "visible";
+    });
   }
 }
