@@ -7,6 +7,7 @@ const _VEC2 = vec2.create()
 
 class Mouse {
     constructor(target) {
+        console.log('mouse', this)
         this.cursor = vec2.fromValues(0, 0)
         this.lastCursor = vec2.fromValues(0, 0)
         this.velocity = vec2.fromValues(0, 0)
